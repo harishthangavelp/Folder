@@ -207,11 +207,17 @@ const FileExplorer = () => {
   const [oldFileName, setOldFileName] = useState("");
   const [operation, setOperation] = useState("create");
 
-  // Function to ensure that the file location is correctly formatted with 'C:/'
-  const formatFilePath = (path) => {
-    if (!path) return "";
-    // Prepend 'C:/' if the path doesn't start with it
-    return path.startsWith("C:/") ? path : `C:/${path}`;
+  const formatFilePath = (filePath) => {
+    if (!filePath) return "";
+    // For Windows OS, prepend with 'C:/'
+    if (filePath.startsWith("C:/") || filePath.startsWith("tmp")) {
+      return filePath;
+    }
+    // If the path is relative, we assume it's to be treated as 'C:/tmp' or 'C:/<user specified path>'
+    if (filePath.startsWith("tmp")) {
+      return `C:/tmp/${filePath}`;
+    }
+    return `C:/${filePath}`;
   };
 
   const handleFileOperation = async () => {
@@ -219,7 +225,7 @@ const FileExplorer = () => {
       let payload = {};
       let endpoint = "";
 
-      // Format the fileLocation with C:/ if necessary
+      // Format the file location path before making the request
       const formattedFileLocation = formatFilePath(fileLocation);
 
       if (operation === "create") {
@@ -257,7 +263,6 @@ const FileExplorer = () => {
       console.error("Error during file operation:", error);
     }
   };
-
 
   return (
     <div className="file-explorer-container">
