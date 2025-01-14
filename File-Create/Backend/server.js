@@ -208,10 +208,12 @@ const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
 const path = require("path");
+require("dotenv").config();
+
 
 const app = express();
 app.use(cors());
-const PORT = 5000;
+const PORT = process.env.PORT;
 
 // Middleware to parse JSON requests
 app.use(express.json());
@@ -301,3 +303,4 @@ app.post("/api/folder/delete", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
+//https://folder-02mx.onrender.com
