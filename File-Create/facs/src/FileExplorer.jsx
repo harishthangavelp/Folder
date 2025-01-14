@@ -207,31 +207,41 @@ const FileExplorer = () => {
   const [oldFileName, setOldFileName] = useState("");
   const [operation, setOperation] = useState("create");
 
+  // Function to ensure that the file location is correctly formatted with 'C:/'
+  const formatFilePath = (path) => {
+    if (!path) return "";
+    // Prepend 'C:/' if the path doesn't start with it
+    return path.startsWith("C:/") ? path : `C:/${path}`;
+  };
+
   const handleFileOperation = async () => {
     try {
       let payload = {};
       let endpoint = "";
 
+      // Format the fileLocation with C:/ if necessary
+      const formattedFileLocation = formatFilePath(fileLocation);
+
       if (operation === "create") {
-        if (!fileName || !fileLocation) {
+        if (!fileName || !formattedFileLocation) {
           alert("Please provide both file name and location for creation.");
           return;
         }
-        payload = { fileName, fileLocation };
+        payload = { fileName, fileLocation: formattedFileLocation };
         endpoint = "https://folder-02mx.onrender.com/api/file/create";
       } else if (operation === "update") {
-        if (!oldFileName || !newFileName || !fileLocation) {
+        if (!oldFileName || !newFileName || !formattedFileLocation) {
           alert("Please provide old file name, new file name, and location for update.");
           return;
         }
-        payload = { oldFileName, newFileName, fileLocation };
+        payload = { oldFileName, newFileName, fileLocation: formattedFileLocation };
         endpoint = "https://folder-02mx.onrender.com/api/file/update";
       } else if (operation === "delete") {
-        if (!fileName || !fileLocation) {
+        if (!fileName || !formattedFileLocation) {
           alert("Please provide both file name and location for deletion.");
           return;
         }
-        payload = { fileName, fileLocation };
+        payload = { fileName, fileLocation: formattedFileLocation };
         endpoint = "https://folder-02mx.onrender.com/api/file/delete";
       }
 
@@ -247,6 +257,7 @@ const FileExplorer = () => {
       console.error("Error during file operation:", error);
     }
   };
+
 
   return (
     <div className="file-explorer-container">
