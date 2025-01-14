@@ -214,21 +214,21 @@ const FolderExplorer = () => {
           return;
         }
         payload = { folderName, folderLocation };
-        endpoint = "http://localhost:5000/api/folder/create";
+        endpoint = "https://folder-02mx.onrender.com/api/folder/create";
       } else if (operation === "update") {
         if (!oldFolderName || !newFolderName || !folderLocation) {
           alert("Please provide old folder name, new folder name, and location for update.");
           return;
         }
         payload = { oldFolderName, newFolderName, folderLocation };
-        endpoint = "http://localhost:5000/api/folder/update";
+        endpoint = "https://folder-02mx.onrender.com/api/folder/update";
       } else if (operation === "delete") {
         if (!folderName || !folderLocation) {
           alert("Please provide both folder name and location for deletion.");
           return;
         }
         payload = { folderName, folderLocation };
-        endpoint = "http://localhost:5000/api/folder/delete";
+        endpoint = "https://folder-02mx.onrender.com/api/folder/delete";
       }
 
       const response = await fetch(endpoint, {
