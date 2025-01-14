@@ -1,0 +1,67 @@
+
+.home-container {
+  display: flex;
+  justify-content: center; /* Horizontally center content */
+  align-items: center;     /* Vertically center content */
+  height: 100vh;
+  background-color: #f4f6f8;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  padding: 20px;  /* Added padding for spacing */
+}
+
+.home-content {
+  text-align: center;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Ensure buttons stack vertically on small screens */
+  align-items: center;    /* Center the content inside the box */
+}
+
+.home-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #4CAF50;
+}
+
+.home-description {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.home-actions {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  gap: 10px;  /* Add space between the buttons */
+  width: 100%;
+  flex-wrap: wrap;  /* Allow buttons to wrap on small screens */
+}
+
+.action-btn {
+  padding: 12px 30px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex: 0 0 auto;  /* Prevent the buttons from stretching */
+}
+
+.action-btn:hover {
+  background-color: #45a049;
+}
+
+.action-btn:focus {
+  outline: none;
+}
+
